@@ -21,12 +21,12 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Brand Get(Expression<Func<Brand, bool>> filter)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public void Update(Brand entity)

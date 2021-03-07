@@ -40,9 +40,9 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
-        public List<Car> GetCarsByDailyPrice(int dailyprice)
+        public List<Car> GetCarsByDailyPrice(decimal min, decimal max)
         {
-            return _carDal.GetAll(c => c.DailyPrice > 0);
+            return _carDal.GetAll(c => c.DailyPrice >=min && c.DailyPrice<=max);
         }
 
         public List<Car> GetCarsByBrandId(int brandId)
@@ -58,6 +58,11 @@ namespace Business.Concrete
         public void Update(Car car)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Car> GetCarById(int id)
+        {
+            return _carDal.GetAll(c => c.Id == id);
         }
     }
 }

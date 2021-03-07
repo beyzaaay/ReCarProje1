@@ -21,12 +21,12 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Color Get(Expression<Func<Color, bool>> filter)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public void Update(Color entity)
