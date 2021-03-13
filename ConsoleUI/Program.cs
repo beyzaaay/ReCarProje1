@@ -3,6 +3,7 @@ using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleUI
 {
@@ -10,7 +11,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
+            //CarTest();
             //BrandTest();
             //ColorGetAllTest();
             //BrandGetByIdTest();
@@ -18,6 +19,66 @@ namespace ConsoleUI
             //BrandGetAllTest();
             //ColorCrudTest();
             //BrandCrudTest();
+            //UserTest();
+            //UserAdd();
+            //RentalAdd();
+            //RentalTest();
+
+        }
+
+        private static void RentalTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.GetAll();
+            if (result.Success)
+            {
+                foreach (var rental in result.Data)
+                {
+                    Console.WriteLine(rental.CarId + " " + rental.CustomerId + " " + rental.RentDate + " " + rental.ReturnDate);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+        private static void RentalAdd()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.Add(new Rental { CarId = 5, CustomerId = 1, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(7) });
+            rentalManager.Add(new Rental { CarId = 4, CustomerId = 1, RentDate = DateTime.Now });
+            rentalManager.Add(new Rental { CarId = 2, CustomerId = 1, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(2) });
+            rentalManager.Add(new Rental { CarId = 3, CustomerId = 2, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(3) });
+            rentalManager.Add(new Rental { CarId = 1, CustomerId = 2, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(4) });
+        }
+
+        private static void UserAdd()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(new User { Id = 1, FirstName = "beyza", LastName = "ay", Email = "beyzaay@gmail.com", Password = "12345" });
+            userManager.Add(new User { Id = 2, FirstName = "servet", LastName = "ay", Email = "servetay@gmail.com", Password = "12345" });
+            userManager.Add(new User { Id = 3, FirstName = "Ceren", LastName = "ay", Email = "cerenay@gmail.com", Password = "12345" });
+
+            
+
+            
+        }
+        private static void UserTest()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result = userManager.GetAll();
+            if (result.Success)
+            {
+                foreach (var user in result.Data)
+                {
+                    Console.WriteLine(user.FirstName + " " + user.LastName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void BrandCrudTest()
