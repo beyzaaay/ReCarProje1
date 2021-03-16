@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
+    //Interface'ler referans tutucudur
     public interface ICarService
     {
         IDataResult<List<Car>> GetAll();//Tümünü listeler
